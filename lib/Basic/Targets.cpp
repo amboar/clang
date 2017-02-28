@@ -1708,6 +1708,17 @@ public:
     }
     return false;
   }
+
+  CallingConvCheckResult checkCallingConvention(CallingConv CC) const override {
+    switch (CC) {
+    case CC_C:
+    case CC_Swift:
+        return CCCR_OK;
+    default:
+        break;
+    }
+    return CCCR_Warning;
+  }
 };
 
 class DarwinPPC32TargetInfo : public DarwinTargetInfo<PPC32TargetInfo> {
